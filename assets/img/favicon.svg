@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NXTCell">
+  <rect width="64" height="64" rx="14" fill="#0A1826"/>
+  <rect x="15" y="22" width="7.5" height="27" rx="1.6" fill="#1D9CD7"/>
+  <rect x="26.5" y="22" width="7.5" height="27" rx="1.6" fill="#FFFFFF"/>
+  <g fill="none" stroke-linecap="round" stroke-width="3.6">
+    <path d="M30 19 A 9 9 0 0 1 39 28" stroke="#1D9CD7"/>
+    <path d="M30 11.5 A 16.5 16.5 0 0 1 46.5 28" stroke="#6FC6EC"/>
+  </g>
+</svg>
