@@ -1,0 +1,262 @@
+# ---------------------------------------------------------------------------
+# Pages CMS configuration — https://pagescms.org
+# Open app.pagescms.org, sign in with GitHub, pick this repository.
+# ---------------------------------------------------------------------------
+media:
+  - name: product_images
+    label: Product images
+    input: assets/img/products
+    output: /assets/img/products
+    extensions: [jpg, jpeg, png, webp, svg]
+  - name: documents
+    label: Datasheets & documents
+    input: assets/files
+    output: /assets/files
+    extensions: [pdf, docx, xlsx]
+
+content:
+  # ------------------------------------------------------------------ products
+  - name: products
+    label: Products
+    type: collection
+    path: _products
+    filename: "{primary}.md"
+    view:
+      fields: [title, category, availability, published]
+      primary: title
+    fields:
+      - name: title
+        label: Product name
+        type: string
+        required: true
+      - name: published
+        label: Published on the website
+        type: boolean
+        default: false
+        description: "Turn this on when the product should appear publicly."
+      - name: order
+        label: Sort order
+        type: number
+        default: 100
+        description: "Lower numbers appear first."
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: [Smartphones, Tablets, Feature phones, Audio, Wearables, Accessories]
+        default: Smartphones
+      - name: summary
+        label: Short description
+        type: text
+        description: "One or two lines, shown on the product card."
+      - name: image
+        label: Product image
+        type: image
+        options:
+          media: product_images
+        description: "Best on a plain white background."
+      - name: availability
+        label: Availability
+        type: select
+        options:
+          values: ["Available now", "Coming soon", "Enquire for availability", "Discontinued"]
+        default: "Coming soon"
+      - name: features
+        label: Key features
+        type: object
+        list: true
+        fields:
+          - name: feature
+            label: Feature
+            type: string
+      - name: specifications
+        label: Specifications
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Specification
+            type: string
+          - name: value
+            label: Value
+            type: string
+      - name: datasheet
+        label: Datasheet
+        type: file
+        options:
+          media: documents
+      - name: body
+        label: Full description
+        type: rich-text
+
+  # ------------------------------------------------------- site-wide settings
+  - name: settings
+    label: Site settings
+    type: file
+    path: _config.yml
+    fields:
+      - name: title
+        label: Site name
+        type: string
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: description
+        label: Site description (SEO)
+        type: text
+        description: "Used as the default meta description and social preview text."
+      - name: url
+        label: Site URL
+        type: string
+      - name: form_endpoint
+        label: Enquiry form endpoint
+        type: string
+        description: "Google Apps Script web app URL that receives enquiries. Leave blank to fall back to email."
+      - name: ga_measurement_id
+        label: Google Analytics ID
+        type: string
+        description: "For example G-XXXXXXXXXX. Leave blank to disable analytics."
+      - name: company
+        label: Company details
+        type: object
+        fields:
+          - name: legal_name
+            label: Legal entity name
+            type: string
+          - name: founded
+            label: Founded
+            type: number
+          - name: email
+            label: Enquiry email
+            type: string
+          - name: address_line1
+            label: Address line 1
+            type: string
+          - name: address_line2
+            label: Address line 2
+            type: string
+          - name: country
+            label: Country
+            type: string
+          - name: brand_site
+            label: Brand website URL
+            type: string
+
+  # ------------------------------------------------------------- page headings
+  - name: page_home
+    label: "Page — Home"
+    type: file
+    path: index.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_about
+    label: "Page — About"
+    type: file
+    path: about.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_portfolio
+    label: "Page — Portfolio"
+    type: file
+    path: portfolio.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_technology
+    label: "Page — Technology"
+    type: file
+    path: technology.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_products
+    label: "Page — Products"
+    type: file
+    path: products.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_partner
+    label: "Page — Partner"
+    type: file
+    path: partner.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+  - name: page_contact
+    label: "Page — Contact"
+    type: file
+    path: contact.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: eyebrow
+        label: Eyebrow
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: description
+        label: Meta description
+        type: text
+
+settings:
+  content:
+    merge: false

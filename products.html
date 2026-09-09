@@ -1,0 +1,66 @@
+---
+layout: page
+permalink: /products/
+title: "Products"
+eyebrow: "Products"
+lede: "Our product catalogue — smartphones, tablets and feature phones from the NXTCell portfolio."
+description: "Browse the NXTCell Mobility product catalogue — smartphones, tablets and feature phones. Enquire with our team for specifications, availability and trade pricing."
+---
+
+{%- assign live = site.products | where: "published", true | sort: "order" -%}
+
+<section class="section">
+  <div class="wrap">
+    {%- if live.size > 0 %}
+
+    <div class="section-head" style="margin-bottom:2rem">
+      <h2>{{ live.size }} product{% if live.size != 1 %}s{% endif %}</h2>
+    </div>
+
+    <div class="pgrid reveal">
+      {%- for product in live %}
+      <article class="mcard">
+        <a href="{{ product.url | relative_url }}" style="color:inherit;display:flex;flex-direction:column;height:100%">
+          <div class="mcard__media">
+            {%- if product.image %}
+            <img src="{{ product.image | relative_url }}" alt="{{ product.title }}" loading="lazy" decoding="async">
+            {%- else %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C6D3DE" stroke-width="1.4" width="72" height="72" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10.5 5.5h3"/></svg>
+            {%- endif %}
+          </div>
+          <div class="mcard__body">
+            {%- if product.category %}<span class="mcard__tag">{{ product.category }}</span>{% endif %}
+            <h3>{{ product.title }}</h3>
+            {%- if product.summary %}<p>{{ product.summary | truncate: 130 }}</p>{% endif %}
+            <span class="arrowlink" style="margin-top:1rem">
+              View details
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+            </span>
+          </div>
+        </a>
+      </article>
+      {%- endfor %}
+    </div>
+
+    {%- else %}
+
+    <div class="empty">
+      <div class="empty__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10.5 5.5h3"/><path d="M12 17.5h.01"/></svg>
+      </div>
+      <h2>Products coming soon.</h2>
+      <p>
+        Our catalogue is being prepared. In the meantime you can explore the categories we cover
+        in the portfolio, or speak to our team directly about specifications and availability.
+      </p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn--primary" href="{{ '/portfolio/' | relative_url }}">See the portfolio
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to our team</a>
+      </div>
+    </div>
+
+    {%- endif %}
+  </div>
+</section>

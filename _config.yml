@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# NXTCell Mobility — site configuration
+# Edited through Pages CMS ("Site settings") or directly here.
+# ---------------------------------------------------------------------------
+title: "NXTCell Mobility"
+tagline: "Powering India's connected future"
+description: >-
+  NXTCell Mobility is the India licensee for the Alcatel and TCL consumer
+  technology segments — building a house of next-generation consumer tech
+  brands across smartphones, tablets and feature phones, made in India.
+url: "https://nxtcellmobility.com"
+baseurl: ""
+lang: en-IN
+
+company:
+  legal_name: "NXTCell India Private Limited"
+  founded: 2024
+  email: "salesenquiry@nxtcellindia.com"
+  address_line1: "RPS Infinia, 12/6 Milestone, Main Mathura Road"
+  address_line2: "Sector 27C, Faridabad, Haryana 121001"
+  country: "India"
+  brand_site: "https://www.alcatelmobile.com/in"
+
+# Enquiry form endpoint (Google Apps Script web app). Leave blank to fall back
+# to a mailto: link so the form is never silently broken.
+form_endpoint: ""
+
+# Google Analytics 4 measurement ID, e.g. G-XXXXXXXXXX. Blank = no tracking.
+ga_measurement_id: ""
+
+social_image: "/assets/img/og-cover.jpg"
+
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+
+defaults:
+  - scope: { path: "", type: "products" }
+    values: { layout: "product" }
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+sass:
+  style: compressed
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

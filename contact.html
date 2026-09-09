@@ -1,0 +1,40 @@
+---
+layout: page
+permalink: /contact/
+title: "Contact us"
+eyebrow: "Contact"
+lede: "Business, distribution and product enquiries — our team will come back to you."
+description: "Contact NXTCell Mobility — RPS Infinia, Sector 27C, Faridabad, Haryana. Send a business or distribution enquiry to our team."
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        {% include form.html %}
+      </div>
+      <div>
+        <p class="eyebrow">Our details</p>
+        <h2>Reach us directly</h2>
+        <ul class="meta">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.4"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><b>Email</b><a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span><b>Registered office</b><span>{{ site.company.address_line1 }},<br>{{ site.company.address_line2 }}</span></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg>
+            <span><b>Brand website</b><a href="{{ site.company.brand_site }}" rel="noopener">alcatelmobile.com/in</a></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>
+            <span><b>Legal entity</b><span>{{ site.company.legal_name }}</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
