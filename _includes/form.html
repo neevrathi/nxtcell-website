@@ -1,0 +1,62 @@
+<form class="form" id="enquiry-form" novalidate
+      data-endpoint="{{ site.form_endpoint }}"
+      data-fallback="{{ site.company.email }}">
+  <h2 style="font-size:clamp(1.35rem,1.2rem + .6vw,1.7rem)">Send an enquiry</h2>
+  <p style="color:var(--ink-70);font-size:.96rem">Tell us a little about your requirement and we&rsquo;ll route it to the right team.</p>
+
+  <div class="form-row">
+    <div class="field">
+      <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-name" name="name" type="text" autocomplete="name" data-required required>
+      <span class="err" role="alert"></span>
+    </div>
+    <div class="field">
+      <label for="f-company">Company</label>
+      <input id="f-company" name="company" type="text" autocomplete="organization">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" data-required required>
+      <span class="err" role="alert"></span>
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="f-type">Nature of enquiry</label>
+    <select id="f-type" name="enquiry_type">
+      <option value="Distribution / channel partnership">Distribution / channel partnership</option>
+      <option value="Retail partnership">Retail partnership</option>
+      <option value="Product or specification query">Product or specification query</option>
+      <option value="Service and after-sales">Service and after-sales</option>
+      <option value="Media or press">Media or press</option>
+      <option value="Careers">Careers</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="f-message" name="message" data-required required></textarea>
+    <span class="err" role="alert"></span>
+  </div>
+
+  <div class="hp" aria-hidden="true">
+    <label for="f-gotcha">Leave this field empty</label>
+    <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+  </div>
+
+  <button class="btn btn--primary" type="submit" style="width:100%">
+    Send enquiry
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+  </button>
+
+  <div class="form-status" role="status" aria-live="polite"></div>
+  <p class="form__note">We use your details only to respond to this enquiry.</p>
+</form>
