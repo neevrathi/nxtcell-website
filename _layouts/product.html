@@ -1,0 +1,67 @@
+---
+layout: default
+---
+<div class="pagehead">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{ '/products/' | relative_url }}">Products</a> &rsaquo; {{ page.title }}</p>
+    {%- if page.category %}<p class="eyebrow">{{ page.category }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div class="split__media">
+        {%- if page.image %}
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" width="900" height="900">
+        {%- else %}
+          <div class="empty" style="padding:64px 24px">
+            <p class="mb0">Product imagery coming soon.</p>
+          </div>
+        {%- endif %}
+      </div>
+      <div>
+        {%- if page.availability %}
+          <p><span class="badge{% if page.availability != 'Available now' %} badge--muted{% endif %}">{{ page.availability }}</span></p>
+        {%- endif %}
+
+        <div class="prose">{{ content }}</div>
+
+        {%- if page.features and page.features.size > 0 %}
+        <h3>Key features</h3>
+        <ul class="checks">
+          {%- for f in page.features %}
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+            <span>{{ f.feature | default: f }}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+
+        {%- if page.specifications and page.specifications.size > 0 %}
+        <h3 class="mt2">Specifications</h3>
+        <table class="spec-table">
+          <tbody>
+          {%- for s in page.specifications %}
+            <tr><th scope="row">{{ s.label }}</th><td>{{ s.value }}</td></tr>
+          {%- endfor %}
+          </tbody>
+        </table>
+        {%- endif %}
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}?product={{ page.title | uri_escape }}">
+            Enquire about this product
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+          </a>
+          {%- if page.datasheet %}
+          <a class="btn btn--ghost" href="{{ page.datasheet | relative_url }}">Download datasheet</a>
+          {%- endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

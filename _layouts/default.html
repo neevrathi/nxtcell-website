@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-IN' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A1826">
+
+{%- assign page_title = page.title | default: site.title -%}
+{%- assign page_desc = page.description | default: site.description -%}
+<title>{% if page.url == "/" %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }} | {{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page_desc | strip_newlines | strip }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
+<meta property="og:description" content="{{ page_desc | strip_newlines | strip }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="{{ page.image | default: site.social_image | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
+<meta name="twitter:description" content="{{ page_desc | strip_newlines | strip }}">
+<meta name="twitter:image" content="{{ page.image | default: site.social_image | absolute_url }}">
+
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="alternate icon" href="{{ '/assets/img/favicon-32.png' | relative_url }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"{{ site.title }}",
+  "legalName":"{{ site.company.legal_name }}",
+  "url":"{{ site.url }}",
+  "logo":"{{ '/assets/img/nxtcell-logo.png' | absolute_url }}",
+  "foundingDate":"{{ site.company.founded }}",
+  "email":"{{ site.company.email }}",
+  "description":"{{ site.description | strip_newlines | strip }}",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"{{ site.company.address_line1 }}",
+    "addressLocality":"Faridabad",
+    "addressRegion":"Haryana",
+    "postalCode":"121001",
+    "addressCountry":"IN"
+  }
+}
+</script>
+{%- if site.ga_measurement_id and site.ga_measurement_id != "" %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.ga_measurement_id }}');
+</script>
+{%- endif %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__logo" href="{{ '/' | relative_url }}" aria-label="NXTCell Mobility — home">
+        <img src="{{ '/assets/img/nxtcell-logo.png' | relative_url }}" alt="NXTCell" width="129" height="33">
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <span></span>
+      </button>
+      <div class="nav__links" id="nav-links">
+        <a href="{{ '/about/'      | relative_url }}"{% if page.url contains '/about'      %} aria-current="page"{% endif %}>About</a>
+        <a href="{{ '/portfolio/'  | relative_url }}"{% if page.url contains '/portfolio'  %} aria-current="page"{% endif %}>Portfolio</a>
+        <a href="{{ '/technology/' | relative_url }}"{% if page.url contains '/technology' %} aria-current="page"{% endif %}>Technology</a>
+        <a href="{{ '/products/'   | relative_url }}"{% if page.url contains '/products'   %} aria-current="page"{% endif %}>Products</a>
+        <a href="{{ '/contact/'    | relative_url }}"{% if page.url contains '/contact'    %} aria-current="page"{% endif %}>Contact</a>
+        <a class="btn btn--primary nav__cta" href="{{ '/partner/' | relative_url }}">Partner with us</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{{ content }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <img class="flogo" src="{{ '/assets/img/nxtcell-logo-white.png' | relative_url }}" alt="NXTCell" width="122" height="31">
+        <p>Building a house of next-generation consumer technology brands for India — and taking Indian-made consumer electronics to the world.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="{{ '/about/' | relative_url }}">About us</a></li>
+          <li><a href="{{ '/about/#leadership' | relative_url }}">Leadership</a></li>
+          <li><a href="{{ '/technology/' | relative_url }}">Technology</a></li>
+          <li><a href="{{ '/partner/' | relative_url }}">Partner with us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="{{ '/portfolio/' | relative_url }}">Brands &amp; portfolio</a></li>
+          <li><a href="{{ '/products/' | relative_url }}">Products</a></li>
+          <li><a href="{{ site.company.brand_site }}" rel="noopener">Alcatel India</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:{{ site.company.email }}">{{ site.company.email }}</a></li>
+          <li>{{ site.company.address_line1 }},<br>{{ site.company.address_line2 }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>&copy; <span id="year">2026</span> {{ site.company.legal_name }}. All rights reserved.</span>
+      <span>Alcatel and TCL are trademarks of their respective owners, used under licence.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>
