@@ -55,6 +55,75 @@
   var y = document.getElementById('year');
   if (y) { y.textContent = new Date().getFullYear(); }
 
+
+  /* --- product banner carousel --- */
+  (function () {
+    var banner = document.querySelector('.banner');
+    if (!banner) return;
+    var track = banner.querySelector('.banner__track');
+    var slides = Array.prototype.slice.call(banner.querySelectorAll('.banner__slide'));
+    var dotsWrap = banner.querySelector('.banner__dots');
+    if (!track || slides.length < 2) return;
+
+    var index = 0, timer = null, DELAY = 6000;
+
+    slides.forEach(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Show slide ' + (i + 1) + ' of ' + slides.length);
+      b.addEventListener('click', function () { go(i, true); });
+      dotsWrap.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function go(i, userInitiated) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
+      dots.forEach(function (d, n) { d.setAttribute('aria-selected', String(n === index)); });
+      slides.forEach(function (s, n) { s.setAttribute('aria-hidden', String(n !== index)); });
+      dotsWrap.classList.toggle('on-dark', slides[index].classList.contains('banner__slide--c'));
+      if (userInitiated) restart();
+    }
+    function next() { go(index + 1); }
+    function prev() { go(index - 1); }
+    function start() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = setInterval(next, DELAY);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    var nextBtn = banner.querySelector('.banner__arrow--next');
+    var prevBtn = banner.querySelector('.banner__arrow--prev');
+    if (nextBtn) nextBtn.addEventListener('click', function () { next(); restart(); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restart(); });
+
+    banner.addEventListener('mouseenter', stop);
+    banner.addEventListener('mouseleave', start);
+    banner.addEventListener('focusin', stop);
+    banner.addEventListener('focusout', start);
+
+    /* touch swipe */
+    var x0 = null;
+    banner.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    banner.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); }
+      x0 = null; start();
+    }, { passive: true });
+
+    document.addEventListener('keydown', function (e) {
+      if (!banner.matches(':hover') && !banner.contains(document.activeElement)) return;
+      if (e.key === 'ArrowRight') { next(); restart(); }
+      if (e.key === 'ArrowLeft') { prev(); restart(); }
+    });
+
+    go(0);
+    start();
+  })();
+
   /* --- enquiry form --- */
   var form = document.getElementById('enquiry-form');
   if (!form) return;
