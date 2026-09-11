@@ -7,13 +7,13 @@
 
 {%- assign page_title = page.title | default: site.title -%}
 {%- assign page_desc = page.description | default: site.description -%}
-<title>{% if page.url == "/" %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }} | {{ site.title }}{% endif %}</title>
+<title>{% if page.url == "/" %}{{ site.title }}: {{ site.tagline }}{% else %}{{ page_title }} | {{ site.title }}{% endif %}</title>
 <meta name="description" content="{{ page_desc | strip_newlines | strip }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.title }}">
-<meta property="og:title" content="{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
+<meta property="og:title" content="{% if page.url == '/' %}{{ site.title }}: {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
 <meta property="og:description" content="{{ page_desc | strip_newlines | strip }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:locale" content="en_IN">
@@ -21,7 +21,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
+<meta name="twitter:title" content="{% if page.url == '/' %}{{ site.title }}: {{ site.tagline }}{% else %}{{ page_title }}{% endif %}">
 <meta name="twitter:description" content="{{ page_desc | strip_newlines | strip }}">
 <meta name="twitter:image" content="{{ page.image | default: site.social_image | absolute_url }}">
 
@@ -34,6 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
+<link rel="stylesheet" href="{{ '/assets/css/motion.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
 
 <script type="application/ld+json">
 {
@@ -72,8 +73,8 @@
 <header class="site-header">
   <div class="wrap">
     <nav class="nav" aria-label="Primary">
-      <a class="nav__logo" href="{{ '/' | relative_url }}" aria-label="NXTCell Mobility — home">
-        <img src="{{ '/assets/img/nxtcell-logo.png' | relative_url }}" alt="NXTCell" width="129" height="33">
+      <a class="nav__logo" href="{{ '/' | relative_url }}" aria-label="Nxtcell Mobility, home">
+        <img src="{{ '/assets/img/nxtcell-logo.png' | relative_url }}" alt="Nxtcell" width="129" height="33">
       </a>
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
         <span></span>
@@ -99,8 +100,8 @@
   <div class="wrap">
     <div class="footer__grid">
       <div>
-        <img class="flogo" src="{{ '/assets/img/nxtcell-logo-white.png' | relative_url }}" alt="NXTCell" width="122" height="31">
-        <p>Building a house of next-generation consumer technology brands for India — and taking Indian-made consumer electronics to the world.</p>
+        <img class="flogo" src="{{ '/assets/img/nxtcell-logo-white.png' | relative_url }}" alt="Nxtcell" width="122" height="31">
+        <p>Building a house of next-generation consumer technology brands for India, and taking Indian-made consumer electronics to the world.</p>
       </div>
       <div>
         <h4>Company</h4>
@@ -129,11 +130,12 @@
     </div>
     <div class="footer__bar">
       <span>&copy; <span id="year">2026</span> {{ site.company.legal_name }}. All rights reserved.</span>
-      <span>Alcatel is a trademark of its respective owner, used under licence. NX is a trademark of NXTCell India Private Limited.</span>
+      <span>Alcatel is a trademark of its respective owner, used under licence. NX is a trademark of Nxtcell India Private Limited.</span>
     </div>
   </div>
 </footer>
 
+<script src="{{ '/assets/js/worldmask.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
 <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
 </body>
 </html>
