@@ -1,6 +1,6 @@
 /* ==========================================================================
-   NXTCell Mobility — design system
-   Brand blue #1D9CD7 sampled from the NXTCell wordmark.
+   Nxtcell Mobility, design system
+   Brand blue #1D9CD7 sampled from the Nxtcell wordmark.
    ========================================================================== */
 
 :root{
@@ -84,7 +84,7 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
   letter-spacing:.14em;text-transform:uppercase;color:var(--blue-700);
   margin:0 0 1rem;
 }
-.eyebrow::before{content:"";width:22px;height:2px;background:var(--blue);border-radius:2px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(29,156,215,.16)}
 .lede{font-size:clamp(1.06rem,1rem + .35vw,1.22rem);color:var(--ink-70);line-height:1.62}
 .section{padding:clamp(64px,7vw,116px) 0}
 .section--soft{background:var(--bg-soft)}
@@ -92,7 +92,7 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
 .section-head{max-width:720px;margin-bottom:clamp(36px,4vw,60px)}
 .section-head.center{margin-inline:auto;text-align:center}
 
-/* ---------- brand corner bracket (from NXTCell collateral) ---------- */
+/* ---------- brand corner bracket (from Nxtcell collateral) ---------- */
 .bracket{position:relative}
 .bracket::before,.bracket::after{
   content:"";position:absolute;width:46px;height:46px;z-index:2;pointer-events:none;
@@ -421,7 +421,7 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
   font-size:.74rem;font-weight:750;letter-spacing:.15em;text-transform:uppercase;
   color:var(--blue-700);margin:0 0 .85rem;
 }
-.banner__eyebrow::before{content:"";width:20px;height:2px;background:var(--blue);border-radius:2px}
+.banner__eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(29,156,215,.16)}
 .banner__inner h2{font-size:clamp(1.9rem,1.25rem + 2.4vw,3.1rem);margin-bottom:.55rem}
 .banner__inner p{color:var(--ink-70);font-size:clamp(1rem,.95rem + .3vw,1.12rem);max-width:34em}
 .banner__specs{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin:1.3rem 0 0;padding:0;list-style:none}
