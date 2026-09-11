@@ -1,19 +1,19 @@
 # ---------------------------------------------------------------------------
-# NXTCell Mobility — site configuration
+# Nxtcell Mobility site configuration
 # Edited through Pages CMS ("Site settings") or directly here.
 # ---------------------------------------------------------------------------
-title: "NXTCell Mobility"
+title: "Nxtcell Mobility"
 tagline: "Powering India's connected future"
 description: >-
-  NXTCell Mobility holds a global brand licence for Alcatel and is building
-  NX, its own homegrown connected ecosystem — smartphones, tablets,
+  Nxtcell Mobility holds a global brand licence for Alcatel and is building
+  NX, its own homegrown connected ecosystem of smartphones, tablets,
   smartwatches, audio and feature phones, manufactured in India.
 url: "https://neevrathi.github.io"
 baseurl: "/nxtcell-website"
 lang: en-IN
 
 company:
-  legal_name: "NXTCell India Private Limited"
+  legal_name: "Nxtcell India Private Limited"
   founded: 2024
   email: "salesenquiry@nxtcellindia.com"
   address_line1: "RPS Infinia, 12/6 Milestone, Main Mathura Road"
