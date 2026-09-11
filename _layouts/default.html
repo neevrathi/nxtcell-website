@@ -79,6 +79,7 @@
         <span></span>
       </button>
       <div class="nav__links" id="nav-links">
+        <a href="{{ '/'            | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
         <a href="{{ '/about/'      | relative_url }}"{% if page.url contains '/about'      %} aria-current="page"{% endif %}>About</a>
         <a href="{{ '/portfolio/'  | relative_url }}"{% if page.url contains '/portfolio'  %} aria-current="page"{% endif %}>Portfolio</a>
         <a href="{{ '/technology/' | relative_url }}"{% if page.url contains '/technology' %} aria-current="page"{% endif %}>Technology</a>
