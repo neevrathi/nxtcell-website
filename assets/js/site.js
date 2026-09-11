@@ -1,4 +1,4 @@
-/* NXTCell Mobility — site behaviour. No dependencies. */
+/* Nxtcell Mobility site behaviour. No dependencies. */
 (function () {
   'use strict';
 
@@ -54,6 +54,71 @@
   /* --- current year --- */
   var y = document.getElementById('year');
   if (y) { y.textContent = new Date().getFullYear(); }
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- animated number counters --- */
+  (function () {
+    var stats = document.querySelectorAll('.stat b');
+    if (!stats.length || !('IntersectionObserver' in window)) return;
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        co.unobserve(en.target);
+        var el = en.target;
+        var raw = el.textContent.trim();
+        var m = raw.match(/^([^\d]*)([\d.,]+)(.*)$/);
+        if (!m) return;
+        var pre = m[1], post = m[3];
+        var target = parseFloat(m[2].replace(/,/g, ''));
+        if (!isFinite(target) || reduceMotion) return;
+        var decimals = (m[2].split('.')[1] || '').length;
+        var t0 = null, DUR = 1400;
+        el.parentElement.classList.add('counting');
+        function tick(ts) {
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / DUR, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + (target * eased).toFixed(decimals) + post;
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = raw;
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+    stats.forEach(function (s) { co.observe(s); });
+  })();
+
+  /* --- global footprint map --- */
+  (function () {
+    var svg = document.querySelector('.world');
+    if (!svg) return;
+
+    /* Coastline mask, 96 x 44 cells, '#' = land. Derived from Natural Earth
+       110m land polygons, equirectangular, 80N to 56S. */
+    var MASK = window.__NXT_WORLD_MASK__ || [];
+    var dotsGroup = svg.querySelector('.world__dots');
+    if (dotsGroup && MASK.length) {
+      var COLS = MASK[0].length, ROWS = MASK.length;
+      var VW = 1000, VH = 460;
+      var cw = VW / COLS, ch = VH / ROWS;
+      var r = Math.min(cw, ch) * 0.30;
+      var parts = [];
+      for (var ry = 0; ry < ROWS; ry++) {
+        for (var rx = 0; rx < COLS; rx++) {
+          if (MASK[ry].charAt(rx) !== '#') continue;
+          var cx = (rx + 0.5) * cw, cy = (ry + 0.5) * ch;
+          parts.push('<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + r.toFixed(2) + '"/>');
+        }
+      }
+      dotsGroup.innerHTML = parts.join('');
+    }
+
+    /* give each arc its true length so the draw animation is exact */
+    svg.querySelectorAll('.arc').forEach(function (p) {
+      try { p.style.setProperty('--len', p.getTotalLength().toFixed(1)); } catch (e) {}
+    });
+  })();
 
 
   /* --- product banner carousel --- */
@@ -209,7 +274,7 @@
       body: JSON.stringify(data)
     }).then(function () {
       form.reset();
-      setStatus('Thank you — your enquiry has been received. Our team will get back to you shortly.', 'ok');
+      setStatus('Thank you. Your enquiry has been received and our team will get back to you shortly.', 'ok');
     }).catch(function () {
       setStatus('Something went wrong. Please email us directly at ' + fallbackTo + '.', 'bad');
     }).then(function () {
